@@ -306,6 +306,10 @@
   BootstrapDualListbox.prototype = {
     init: function () {
       // Add the custom HTML template
+      if($('#bootstrapDualListTemplate').length > 0) {
+          this.container = $($('#bootstrapDualListTemplate').html().trim())
+              .insertBefore(this.element);
+      } else {
       this.container = $('' +
         '<div class="bootstrap-duallistbox-container">' +
         ' <div class="box1">' +
@@ -346,6 +350,7 @@
         ' </div>' +
         '</div>')
         .insertBefore(this.element);
+      }
 
       // Cache the inner elements
       this.elements = {
@@ -362,10 +367,10 @@
         info2: $('.box2 .info', this.container),
         select1: $('.box1 select', this.container),
         select2: $('.box2 select', this.container),
-        moveButton: $('.box1 .move', this.container),
-        removeButton: $('.box2 .remove', this.container),
-        moveAllButton: $('.box1 .moveall', this.container),
-        removeAllButton: $('.box2 .removeall', this.container),
+        moveButton: $('.box1-btn-group .move', this.container),
+        removeButton: $('.box2-btn-group .remove', this.container),
+        moveAllButton: $('.box1-btn-group .moveall', this.container),
+        removeAllButton: $('.box2-btn-group .removeall', this.container),
         form: $($('.box1 .filter', this.container)[0].form)
       };
 
@@ -424,13 +429,13 @@
         this.container.find('.moveall > i, .move > i').removeClass('glyphicon glyphicon-arrow-right').addClass('icon-arrow-right');
         this.container.find('.removeall > i, .remove > i').removeClass('glyphicon glyphicon-arrow-left').addClass('icon-arrow-left');
       } else {
-        this.container.removeClass('row-fluid bs2compatible').addClass('row');
-        this.container.find('.box1, .box2').removeClass('span6').addClass('col-md-6');
-        this.container.find('.clear1, .clear2').removeClass('btn-mini').addClass('btn-default btn-xs');
-        this.container.find('input, select').addClass('form-control');
-        this.container.find('.btn').addClass('btn-default');
-        this.container.find('.moveall > i, .move > i').removeClass('icon-arrow-right').addClass('glyphicon glyphicon-arrow-right');
-        this.container.find('.removeall > i, .remove > i').removeClass('icon-arrow-left').addClass('glyphicon glyphicon-arrow-left');
+        //this.container.removeClass('row-fluid bs2compatible').addClass('row');
+        //this.container.find('.box1, .box2').removeClass('span6').addClass('col-md-6');
+        //this.container.find('.clear1, .clear2').removeClass('btn-mini').addClass('btn-default btn-xs');
+        //this.container.find('input, select').addClass('form-control');
+        //this.container.find('.btn').addClass('btn-default');
+        //this.container.find('.moveall > i, .move > i').removeClass('icon-arrow-right').addClass('glyphicon glyphicon-arrow-right');
+        //this.container.find('.removeall > i, .remove > i').removeClass('icon-arrow-left').addClass('glyphicon glyphicon-arrow-left');
       }
       if (refresh) {
         refreshSelects(this);
